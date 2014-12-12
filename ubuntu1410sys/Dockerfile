@@ -14,6 +14,18 @@ RUN mkdir /mnt/ram -p
 RUN apt-get install openssh-server -y
 RUN cd /mnt/ram
 
+# The "genkeys.sh" script need to be executed first
+RUN adduser jenkins --gecos "" --disabled-password
+RUN mkdir /home/jenkins/.ssh/
+ADD known_hosts /home/jenkins/.ssh/
+ADD id_rsa /home/jenkins/.ssh/
+ADD id_rsa.pub /home/jenkins/.ssh/
+RUN chown jenkins:jenkins /home/jenkins/.ssh/*
+RUN chown 600 /home/jenkins/.ssh/*
+
+# Install openssh-server (for Jenkins and debug)
+RUN apt-get install openssh-server -y
+
 # Uncomment to check if the image is able to compile Ring
 ADD compile.sh /root/compile.sh
 RUN /bin/bash /root/compile.sh
