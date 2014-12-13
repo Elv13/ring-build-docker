@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install git -y
 RUN git clone https://gerrit-sflphone.savoirfairelinux.com/sflphone /root/sflphone
 
 # Install the necessary packages
-RUN apt-get install software-properties-common yasm build-essential curl wget autoconf autotools-dev libtool cmake autopoint pkg-config texinfo libx11-xcb-dev libasound2-dev libpulse-dev -y
+RUN apt-get install software-properties-common yasm build-essential curl wget autoconf autotools-dev libtool cmake autopoint pkg-config texinfo libx11-xcb-dev libasound2-dev libpulse-dev libdbus-c++-bin libdbus-c++-dev -y
 
 # Create the ramdisk path
 RUN mkdir /mnt/ram -p 
